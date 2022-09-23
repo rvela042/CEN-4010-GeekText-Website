@@ -1,1 +1,8 @@
 "devStart" command will allow us to start our server using nodemon
+---> npm run devStart
+
+# Commit your changes
+git commit -m "First commit"
+
+# Push your changes
+git push
