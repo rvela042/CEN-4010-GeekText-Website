@@ -2,9 +2,14 @@ const express = require('express')
 const router = express.Router()
 
 module.exports = router
-//here we reach 9:34 -- how we discuss with the API 
+//here we reach 9:34 -- how we discuss with the API
+
+//requirements to reach each schema in the DB
+const book = require('../controllers/book');
 
 //need a route to get books
+router.get('/books', book.read);
+router.post('/books', book.create);
 
 //need a route to get users
 

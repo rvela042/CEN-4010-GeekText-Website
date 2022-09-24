@@ -6,3 +6,8 @@ git commit -m "First commit"
 
 # Push your changes
 git push
+
+user and password for db
+
+Username: Group12
+Password: GeekText12
