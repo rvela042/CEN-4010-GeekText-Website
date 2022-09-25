@@ -6,6 +6,11 @@ module.exports = router
 
 //requirements to reach each schema in the DB
 const book = require('../controllers/book');
+const test = require('../controllers/test');
+
+//router to get test dummy data
+router.get('/tests', test.obtainTest);
+router.post('/tests', test.createTest);
 
 //need a route to get books
 router.get('/books', book.read);
