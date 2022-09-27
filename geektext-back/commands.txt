@@ -11,3 +11,24 @@ user and password for db
 
 Username: Group12
 Password: GeekText12
+
+
+-----------------------------------------------------------------------------------------------  
+
+
+
+step by step guide to get your code working: 
+
+
+when code is opened on VSCODE - cd into the geektext-back folder 
+type ---- cd geektext-back
+
+from there type the following command
+npm i express mongoose cors 
+
+to run the app type the following
+npm run devStart
+
+you will be able to run this on http://localhost:4000/api 
+
+from there, you will use postman to play with the local host 
