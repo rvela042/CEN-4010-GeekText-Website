@@ -8,6 +8,9 @@ module.exports = router
 const book = require('../controllers/book');
 const test = require('../controllers/test');
 
+//test URL to see if we can GET data
+router.get('/', (req, res) => res.send('Hi, group 12!'));
+
 //router to get test dummy data
 router.get('/tests', test.obtainTest);
 router.post('/tests', test.createTest);
