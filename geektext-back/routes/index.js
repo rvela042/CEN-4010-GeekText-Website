@@ -13,7 +13,7 @@ router.get('/', (req, res) => res.send('Hi, group 12!'));
 
 //router to get test dummy data
 router.get('/tests', test.obtainTest);
-router.post('/tests', test.createTest);
+router.post('/tests', test.create);
 
 //need a route to get books
 router.get('/books', book.read);

@@ -1,9 +1,11 @@
-const test = require('../models/test');
+const Test = require('../models/test');
 const httpResponse = require('../utility/backendShell');
+
+//obtain data
 
 const obtainTest = async (req, res) => {
     try{
-      const tests = await test.find({});
+      const tests = await Test.find({});
   
       httpResponse.successResponse(res, tests);
     } catch (e) {
@@ -12,7 +14,9 @@ const obtainTest = async (req, res) => {
     }
   }
 
-  const createTest = async (req, res) => {
+  //post data
+
+  const create = async (req, res) => {
     try{
 
         const { firstName, lastName } = req.body;
@@ -21,7 +25,7 @@ const obtainTest = async (req, res) => {
             lastName
         }
 
-        const test = await test.createTest(fields);
+        const test = await Test.create(fields);
 
         httpResponse.successResponse(res, 'success')
     } catch (e) {
@@ -31,4 +35,4 @@ const obtainTest = async (req, res) => {
 
 }
 
-module.exports = {obtainTest, createTest};
+module.exports = {obtainTest, create};
