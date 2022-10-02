@@ -13,6 +13,11 @@ Username: Group12
 Password: GeekText12
 
 
+
+
+TO START THE SERVER: :
+
+CHECK BELOW 
 -----------------------------------------------------------------------------------------------  
 
 
