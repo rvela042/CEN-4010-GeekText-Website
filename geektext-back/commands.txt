@@ -20,15 +20,45 @@ Password: GeekText12
 step by step guide to get your code working: 
 
 
-when code is opened on VSCODE - cd into the geektext-back folder 
-type ---- cd geektext-back
+when code is opened on VSCODE - cd into the geektext-back folder by typing the following in the terminal:
+type ---->      cd geektext-back
 
-from there type the following command
-npm i express mongoose cors 
+from there type the following command on your terminal:
+type ---->      npm i express mongoose cors
 
-to run the app type the following
-npm run devStart
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+FOR MAC USERS ONLY: 
+
+type ---->      sudo npm i -g nodemon 
+
+
+to check if you installed this correctly, type the following***:
+
+type ---->      nodemon -v   
+
+                                (this will show installed version which should be 2.0.20)
+
+
+***sudo will ask for password which is the same password to login to your computer (on mac)
+
+FOR WINDOWS USERS ONLY: 
+
+type ---->      npm i nodemon                             (tba)
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+to run the app type the following command on your terminal:
+
+
+WINDOWS: type ---->      npm run devStart
+MAC USERS: type ---->      sudo npm run devStart
 
 you will be able to run this on http://localhost:4000/api 
 
 from there, you will use postman to play with the local host 
+
+
