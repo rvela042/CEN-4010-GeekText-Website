@@ -5,7 +5,7 @@ const httpResponse = require('../utility/backendShell');
 
 const create = async (req, res) => {
     try {
-        await Wishlist.collection.createIndex({ userID: 1, wishlistName: 1 }, { unique: true });
+        await Wishlist.collection.createIndex({ userId: 1, wishlistName: 1 }, { unique: true });
         const { wishlistName, userId } = req.body;
         const fields = {
             userId,
@@ -59,9 +59,9 @@ const obtainWishlists = async (req, res) => {
 
 const addBook = async (req, res) => {
     try {
-        const { bookId, wishlistName } = req.body;
+        const { bookId, wishlistName, userId } = req.body;
         // Find wishlist by name
-        const wishlist = await Wishlist.find({ wishlistName: wishlistName });
+        const wishlist = await Wishlist.find({ wishlistName, userId });
         // Add book Id to book list
         if (wishlist.bookList != undefined) {
             wishlist.bookList.push(bookId)
@@ -69,7 +69,7 @@ const addBook = async (req, res) => {
             wishlist.bookList = [bookId];
         }
         // Update wishlist in db
-        await Wishlist.updateOne({ wishlistName: wishlistName }, { bookList: wishlist.bookList });
+        await Wishlist.updateOne({ wishlistName, userId }, { bookList: wishlist.bookList });
         httpResponse.successResponse(res, 'success');
     } catch (e) {
         console.log(e);
