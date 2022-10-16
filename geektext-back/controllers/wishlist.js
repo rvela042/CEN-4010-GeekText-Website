@@ -69,7 +69,7 @@ const addBook = async (req, res) => {
             wishlist.bookList = [bookId];
         }
         // Update wishlist in db
-        await Wishlist.updateOne({ wishlistName: wishlistName }, wishlist);
+        await Wishlist.updateOne({ wishlistName: wishlistName }, { bookList: wishlist.bookList });
         httpResponse.successResponse(res, 'success');
     } catch (e) {
         console.log(e);
