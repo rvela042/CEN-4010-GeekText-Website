@@ -1,13 +1,5 @@
 const mongoose = require('mongoose');
-const { Rating, Comment, Highest, Average } = require('./model.js');
-  
-// Connecting to database
-mongoose.connect('mongodb://localhost:27017/GFG',
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false
-    });
+const { Rating, Comment, Highest, Average } = require('.models/model.js');
   
 // Creating array of rating data objects
 const ratingData = [{
@@ -35,7 +27,7 @@ const commentData = [{
   
 // Creating array of rating and comment data objects
 const listData = [{
-    highestRating: [5, 3] // find way to map comments to ratings inside array
+    highestRating: [5, 3] // Find way to map comments to ratings inside array
 }]
   
 // Creating array of average ratings for book objects
