@@ -3,6 +3,6 @@
 # Description
 
 # Collaborators
-Robert Velasquez
-Cynthia 
-Ceasar
+- Robert Velasquez
+- Cynthia 
+- Ceasar
