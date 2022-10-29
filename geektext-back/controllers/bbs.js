@@ -1,10 +1,10 @@
-/* const Book = require('../models/book');
+const Book = require('../models/book');
 //we will require the book model in order to retrieve the sorted data
 const httpResponse = require('../utility/backendShell');
 
 
 //method to obtain books by genre -- the required field in the models is titled 'genre'  
-const readByGenre = async (req, res) => {
+const readByGenres = async (req, res) => {
     try {
       const bookByGenre = await Book.find({genre: req.params.author});
       httpResponse.successResponse(res, bookByGenre.sort);
@@ -13,8 +13,6 @@ const readByGenre = async (req, res) => {
       httpResponse.failureResponse(res, e.toString());
     }
 }
-
-*/
 
 //method to obtain books by top seller -- required fields come from Cynthia 
 const readBySeller = async (req, res) => {
