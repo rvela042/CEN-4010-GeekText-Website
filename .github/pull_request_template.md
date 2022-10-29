@@ -1,5 +1,5 @@
 # Description
-A short explaination of what you did. 
+A short explanation of what you did. 
 
 # Testing
 Add detailed testing instructions for your reviewers. 
