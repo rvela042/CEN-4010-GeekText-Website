@@ -1,4 +1,4 @@
-const Book = require('../models/book');
+const Book = require('../db/models/book');
 const httpResponse = require('../utility/backendShell');
 
 
