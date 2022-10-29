@@ -4,7 +4,7 @@ const httpResponse = require('../utility/backendShell');
 
 
 //method to obtain books by genre -- the required field in the models is titled 'genre'  
-const readByGenres = async (req, res) => {
+const readByGenre = async (req, res) => {
     try {
       const bookByGenre = await Book.find({genre: req.params.author});
       httpResponse.successResponse(res, bookByGenre.sort);
