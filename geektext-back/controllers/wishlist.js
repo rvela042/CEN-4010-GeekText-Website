@@ -1,4 +1,4 @@
-const Wishlist = require('../models/wishlist');
+const Wishlist = require('../db/models/wishlist');
 const httpResponse = require('../utility/backendShell');
 
 //method to create a wishlist belongs to a user
