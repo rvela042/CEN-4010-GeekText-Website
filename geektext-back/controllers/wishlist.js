@@ -61,7 +61,7 @@ const addBook = async (req, res) => {
     try {
         const { bookId, wishlistName, userId } = req.body;
         // Find wishlist by name
-        const wishlist = await Wishlist.find({ wishlistName, userId });
+        const wishlist = await Wishlist.findOne({ wishlistName, userId });
         // Add book Id to book list
         if (wishlist.bookList != undefined) {
             wishlist.bookList.push(bookId)
@@ -81,11 +81,44 @@ const addBook = async (req, res) => {
 
 //method to list the books in a user’s wishlist
 
+const listBooks = async (req, res) => {
+
+    try {
+        //Find user's wishlist
+        const { wishlistName, userId } = req.body;
+        const wishlist = await Wishlist.findOne({ wishlistName, userId });
+        //List books in user's wishlist
+        const listBooks = wishlist.bookList;
+        httpResponse.successResponse(res, listBooks);
+
+    } catch (e) {
+        console.log(e)
+        httpResponse.failureResponse(res, e.toString());
+    }
+}
 
 
 
 //method to remove a book from user's wishlist to the shopping cart
+    //Remove book from user's wishlist
+const removeBook = async (req, res) => {
+    try {
+        //Find user's wishlist
+        const wishlistName = req.body.wishListName;
+        const userId = req.body.userId;
+        const bookId = req.body.bookId;
+        const wishlist = await Wishlist.findOne({ wishlistName, userId });
+        //Find the book in user's wishlist
+        const newBookList = wishlist.bookList.filter(storedBookId => storedBookId != bookId);
+        //Update book list in db
+        await Wishlist.updateOne({ wishlistName, userId }, { bookList: newBookList });
+        httpResponse.successResponse(res, 'success');
+    } catch (e) {
+        console.log(e)
+        httpResponse.failureResponse(res, e.toString());
+    }
+}
+    //Add book to user's shopping cart
 
 
-
-module.exports = { create, obtainWishlists, addBook, deleteAll };
+module.exports = { create, obtainWishlists, addBook, deleteAll, listBooks, removeBook };

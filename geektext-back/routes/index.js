@@ -38,4 +38,10 @@ router.post('/addtowishlist', wishlist.addBook);
 //need a route to delete all wishlists
 router.get('/wishlistDeleteAll', wishlist.deleteAll);
 
+//need a route to list books in a user's wishlist
+router.post('/listwishlistbooks', wishlist.listBooks);
+
+//need a route to remove a book from user's wishlist
+router.post('/removewishlistbook', wishlist.removeBook);
+
 //need a route to get comments 
