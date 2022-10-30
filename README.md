@@ -4,5 +4,5 @@
 
 # Collaborators
 - Robert Velasquez
-- Cynthia 
+- Cynthia Valdes Martin
 - Ceasar
