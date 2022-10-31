@@ -23,7 +23,9 @@ router.post('/books', book.create);
 
 //need a route to get users
 router.get('/users', user.obtainUser);
+router.get('/users/:username', user.findUser);
 router.post('/users', user.create);
+router.put('/users', user.updateUser);
 
 //need a route to get all credit card info
 router.get('/cards', card.obtainCard);

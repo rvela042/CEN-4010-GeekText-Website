@@ -9,7 +9,9 @@ const userSchema = new mongoose.Schema({
     email: {type: String, required: false},
     homeaddress: {type: String, required: false},
 
-})
+}
+)
+
 
 const user = mongoose.model("user", userSchema);
 
