@@ -99,8 +99,8 @@ const listBooks = async (req, res) => {
 
 
 
-//method to remove a book from user's wishlist to the shopping cart
-    //Remove book from user's wishlist
+//method to remove a book from user's wishlist
+
 const removeBook = async (req, res) => {
     try {
         //Find user's wishlist
@@ -108,17 +108,40 @@ const removeBook = async (req, res) => {
         const userId = req.body.userId;
         const bookId = req.body.bookId;
         const wishlist = await Wishlist.findOne({ wishlistName, userId });
-        //Find the book in user's wishlist
+        //Find and remove the book in user's wishlist
         const newBookList = wishlist.bookList.filter(storedBookId => storedBookId != bookId);
-        //Update book list in db
+        //Update new book list in db
         await Wishlist.updateOne({ wishlistName, userId }, { bookList: newBookList });
         httpResponse.successResponse(res, 'success');
+
     } catch (e) {
         console.log(e)
         httpResponse.failureResponse(res, e.toString());
     }
 }
-    //Add book to user's shopping cart
 
 
-module.exports = { create, obtainWishlists, addBook, deleteAll, listBooks, removeBook };
+//method to move a book from user's wishlist to shopping cart
+const moveToCart = async (req, res) => {
+    try {
+        //Find user's wishlist
+        const wishlistName = req.body.wishListName;
+        const userId = req.body.userId;
+        const bookId = req.body.bookId;
+        const wishlist = await Wishlist.findOne({ wishlistName, userId });
+        //Find and remove the book in user's wishlist
+        const newBookList = wishlist.bookList.filter(storedBookId => storedBookId != bookId);
+        //Update new book list in db
+        await Wishlist.updateOne({ wishlistName, userId }, { bookList: newBookList });
+        //Move book to shopping cart <-- Waiting for code from Dayalis
+
+        httpResponse.successResponse(res, 'success');
+
+    } catch (e) {
+        console.log(e)
+        httpResponse.failureResponse(res, e.toString());
+    }
+}
+
+
+module.exports = { create, obtainWishlists, addBook, deleteAll, listBooks, removeBook, moveToCart };

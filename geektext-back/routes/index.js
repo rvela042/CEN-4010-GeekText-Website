@@ -44,4 +44,7 @@ router.post('/listwishlistbooks', wishlist.listBooks);
 //need a route to remove a book from user's wishlist
 router.post('/removewishlistbook', wishlist.removeBook);
 
+//need a route to move a book from wishlist to shopping cart
+router.post('/movetocart', wishlist.moveToCart);
+
 //need a route to get comments 
