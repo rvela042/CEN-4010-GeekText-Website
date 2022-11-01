@@ -45,14 +45,9 @@ const obtainUser = async (req, res) => {
 const findUser = async(req, res) => {
   try{
 
-    const { id: username} = req.query;
-        const fields = {
-            username
+        const user = await User.find({"username": req.params.username});
 
-        }
-        const user = await User.find({'username': {'$eq': fields}});
-
-    httpResponse.successResponse(res, user)
+    httpResponse.successResponse(res, user);
 } catch (e) {
     console.log(e);
     httpResponse.failureResponse(res, e.toString());
@@ -62,10 +57,21 @@ const findUser = async(req, res) => {
 
 const updateUser = async(req, res) => {
   try{
-        const {_id, fields} = req.body;
-        const user = await User.findOneAndUpdate({_id}, fields).exec();
+    const { username, password, firstname, lastname, homeaddress} = req.body;
+        const fields = {
+            username,
+            password,
+            firstname,
+            lastname,
+            homeaddress
 
-    httpResponse.successResponse(res, user)
+        }
+
+        const user = await User.findOneAndUpdate({"username": req.params.username}, fields, {
+            new: true
+          });
+        
+    httpResponse.successResponse(res, user);
 } catch (e) {
     console.log(e);
     httpResponse.failureResponse(res, e.toString());
