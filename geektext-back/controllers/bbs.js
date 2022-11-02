@@ -22,6 +22,7 @@ const readBySeller = async (req, res) => {
     } catch (e) {
       console.log(e);
       httpResponse.failureResponse(res, e.toString());
+      
     }
 }
 
@@ -35,5 +36,7 @@ const readByRating = async (req, res) => {
     httpResponse.failureResponse(res, e.toString());
   }
 }
+
+//method to 
 
 module.exports = {readByGenre, readBySeller, }; 
