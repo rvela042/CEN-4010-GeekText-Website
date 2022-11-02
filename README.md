@@ -4,5 +4,8 @@
 
 # Collaborators
 - Robert Velasquez
-- Cynthia 
-- Ceasar
+- Cynthia Valdes Martin
+- Ceasar Vargas
+- Trang Tran
+- Dayalis Vasallo
+- Acxel Vega
