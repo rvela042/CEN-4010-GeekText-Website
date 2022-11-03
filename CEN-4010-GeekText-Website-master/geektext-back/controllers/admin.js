@@ -7,8 +7,7 @@ const create = async (req, res) => {
         const { username, password, id } = req.body;
         const fields = {
             username,
-            password,
-            id,
+            password
         }
 
         const create = await Admin.create(fields);
