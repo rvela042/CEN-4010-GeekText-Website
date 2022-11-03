@@ -5,7 +5,6 @@ const httpResponse = require('../utility/backendShell');
 
 const create = async (req, res) => {
     try {
-        await Wishlist.collection.createIndex({ userId: 1, wishlistName: 1 }, { unique: true });
         const { wishlistName, userId } = req.body;
         const fields = {
             userId,
@@ -13,6 +12,7 @@ const create = async (req, res) => {
             bookList: []
         }
 
+        Wishlist.collection.createIndex({ userId: 1, wishlistName: 1 }, { unique: true });
         const wishlist = await Wishlist.create(fields);
 
         httpResponse.successResponse(res, 'success');
@@ -104,7 +104,7 @@ const listBooks = async (req, res) => {
 const removeBook = async (req, res) => {
     try {
         //Find user's wishlist
-        const wishlistName = req.body.wishListName;
+        const wishlistName = req.body.wishlistName;
         const userId = req.body.userId;
         const bookId = req.body.bookId;
         const wishlist = await Wishlist.findOne({ wishlistName, userId });

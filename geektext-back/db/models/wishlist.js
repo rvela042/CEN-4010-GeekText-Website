@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const wishListSchema = new mongoose.Schema({
 
-    userId: { type: String, required: true, unique: true },
-    wishlistName: { type: String, required: true, unique: true },
+    userId: { type: String, required: true },
+    wishlistName: { type: String, required: true },
     bookList: { type: Array, required: false }
 
 })
