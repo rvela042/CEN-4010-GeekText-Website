@@ -20,6 +20,15 @@ router.post('/tests', test.create);
 router.get('/books', book.read);
 router.post('/books', book.create);
 
+//Routes for shopping cart
+router.get('/shoppingCarts', shoppingCart.getCarts);
+router.post('/shoppingCarts', shoppingCart.createCart);
+router.get('/deleteAllCarts', shoppingCart.deleteAllCarts);
+router.post('/listBooksInCart', shoppingCart.listBooksInCart);
+router.post('/addToCart', shoppingCart.addBookToCart);
+router.post('/removeFromCart', shoppingCart.removeBookFromCart);
+
+
 //need a route to get users
 
 //need a route to get all credit card info
