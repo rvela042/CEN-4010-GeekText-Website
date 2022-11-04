@@ -8,6 +8,8 @@ module.exports = router
 const book = require('../controllers/book');
 const test = require('../controllers/test');
 const wishlist = require('../controllers/wishlist');
+const user = require('../controllers/user');
+const card = require('../controllers/card');
 
 //test URL to see if we can GET data
 router.get('/', (req, res) => res.send('Hi, group 12!'));
@@ -30,8 +32,14 @@ router.post('/removeFromCart', shoppingCart.removeBookFromCart);
 
 
 //need a route to get users
+router.get('/users', user.obtainUser);
+router.get('/users/:username', user.findUser);
+router.post('/users', user.create);
+router.patch('/users/:username', user.updateUser);
 
 //need a route to get all credit card info
+router.get('/cards', card.obtainCard);
+router.post('/cards', card.create);
 
 //need a route to get shipping address info
 
