@@ -1,4 +1,5 @@
 const Wishlist = require('../db/models/wishlist');
+const ShoppingCart = require('../db/models/shoppingCart');
 const httpResponse = require('../utility/backendShell');
 
 //method to create a wishlist belongs to a user
@@ -125,7 +126,7 @@ const removeBook = async (req, res) => {
 const moveToCart = async (req, res) => {
     try {
         //Find user's wishlist
-        const wishlistName = req.body.wishListName;
+        const wishlistName = req.body.wishlistName;
         const userId = req.body.userId;
         const bookId = req.body.bookId;
         const wishlist = await Wishlist.findOne({ wishlistName, userId });
@@ -134,6 +135,14 @@ const moveToCart = async (req, res) => {
         //Update new book list in db
         await Wishlist.updateOne({ wishlistName, userId }, { bookList: newBookList });
         //Move book to shopping cart <-- Waiting for code from Dayalis
+        const shoppingCart = await ShoppingCart.findOne({ userId });
+        // Add bookId to cartContent
+        if (shoppingCart.cartContent != undefined) {
+            shoppingCart.cartContent.push(bookId)
+        } else {
+            shoppingCart.cartContent = [bookId];
+        }
+      await ShoppingCart.updateOne({ userId }, { cartContent: shoppingCart.cartContent });
 
         httpResponse.successResponse(res, 'success');
 
