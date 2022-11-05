@@ -1,4 +1,4 @@
-const Book = require('../models/book');
+const Book = require('../db/models/book');
 //we will require the book model in order to retrieve the sorted data
 const httpResponse = require('../utility/backendShell');
 
@@ -29,8 +29,8 @@ const readBySeller = async (req, res) => {
 //method to obtain books by a certain rating or higher -- required fields come from Axcel 
 const readByRating = async (req, res) => {
   try {
-    const sortedRating = await Book.find({soldcopies: req.params.author}); //need to inquire about the arrays made in the 
-    httpResponse.successResponse(res, sortedRating); 
+    const bookByGenre = await Book.find({ genre: req.params.author });
+    httpResponse.successResponse(res, bookByGenre.sort);
   } catch (e) {
     console.log(e);
     httpResponse.failureResponse(res, e.toString());
@@ -38,5 +38,4 @@ const readByRating = async (req, res) => {
 }
 
 //method to 
-
 module.exports = {readByGenre, readBySeller, }; 
