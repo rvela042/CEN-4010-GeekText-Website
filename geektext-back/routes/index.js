@@ -2,10 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 module.exports = router
-//here we reach 9:34 -- how we discuss with the API
 
 //requirements to reach each schema in the DB
-const book = require('../controllers/book');//this needs to be lowercase
+const book = require('../controllers/book');
 const test = require('../controllers/test');
 const wishlist = require('../controllers/wishlist');
 
@@ -17,7 +16,7 @@ router.get('/tests', test.obtainTest);
 router.post('/tests', test.create);
 
 //Router to get, post, and delete books
-router.post('/book', book.create); //this needs to be lowercase
+router.post('/book', book.create);
 router.get('/book', book.read);
 router.delete('/book', book.deleteBooks);
 
