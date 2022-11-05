@@ -5,7 +5,7 @@ module.exports = router
 //here we reach 9:34 -- how we discuss with the API
 
 //requirements to reach each schema in the DB
-const Book = require('../controllers/book');
+const book = require('../controllers/book');//this needs to be lowercase
 const test = require('../controllers/test');
 const wishlist = require('../controllers/wishlist');
 
@@ -17,9 +17,9 @@ router.get('/tests', test.obtainTest);
 router.post('/tests', test.create);
 
 //Router to get, post, and delete books
-router.post('/book', Book.create);
-router.get('/book', Book.read);
-router.delete('/book', Book.deleteBooks);
+router.post('/book', book.create); //this needs to be lowercase
+router.get('/book', book.read);
+router.delete('/book', book.deleteBooks);
 
 //Routes for shopping cart
 router.get('/shoppingCarts', shoppingCart.getCarts);
