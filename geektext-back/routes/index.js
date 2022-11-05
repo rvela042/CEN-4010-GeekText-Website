@@ -30,3 +30,5 @@ router.post('/books', book.create);
 //need a route to get wishlist item info 
 
 //need a route to get comments 
+router.get('/bookComments', bookComments.read);
+router.post('/bookComments', bookComments.create);
