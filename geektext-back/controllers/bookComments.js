@@ -5,8 +5,8 @@ const httpResponse = require('../utility/backendShell');
 // Post data
 const create = async (req, res) => {
 
-    try{
-        const {title, Comments, User, CreateComment, Rating, Date} = req.body;
+    try {
+        const { title, Comments, User, CreateComment, Rating, Date } = req.body;
         const fields = {
             title,
             Comments,
@@ -31,10 +31,10 @@ const create = async (req, res) => {
 }
 
 // Get data
-  
+
 const read = async (req, res) => {
 
-    try{
+    try {
         const userComment = await Comment.find({});
 
         httpResponse.successResponse(res, userComment);
