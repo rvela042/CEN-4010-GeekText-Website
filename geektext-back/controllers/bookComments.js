@@ -1,4 +1,4 @@
-const Comment = require('../models/bookComment');
+const Comment = require('../db/models/bookComment');
 const httpResponse = require('../utility/backendShell');
 
 
@@ -44,3 +44,4 @@ const read = async (req, res) => {
     }
 
 }
+module.exports = { create, read };

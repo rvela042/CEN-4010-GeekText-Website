@@ -8,6 +8,8 @@ const book = require('../controllers/book');
 const test = require('../controllers/test');
 const wishlist = require('../controllers/wishlist');
 const shoppingCart = require('../controllers/shoppingCart');
+const bookComments = require('../controllers/bookComments');
+
 
 //test URL to see if we can GET data
 router.get('/', (req, res) => res.send('Hi, group 12!'));
