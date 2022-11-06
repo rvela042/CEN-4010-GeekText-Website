@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../db/models/user');
 const httpResponse = require('../utility/backendShell');
 
 //obtain data
@@ -16,7 +16,7 @@ const obtainUser = async (req, res) => {
 
   //post data
 
-  const create = async (req, res) => {
+  const createUser = async (req, res) => {
     try{
 
         const { username, password, firstname, lastname, email, homeaddress} = req.body;
@@ -26,10 +26,12 @@ const obtainUser = async (req, res) => {
             firstname,
             lastname,
             email,
-            homeaddress
+            homeaddress,
+            creditCard: []
 
         }
 
+        User.collection.createIndex({ username: 1, password: 1, firstname: 1, lastname: 1, email: 1, homeaddress: 1 }, { unique: true });
         const user = await User.create(fields);
 
         httpResponse.successResponse(res, 'success')
@@ -46,7 +48,6 @@ const findUser = async(req, res) => {
   try{
 
         const user = await User.find({"username": req.params.username});
-
     httpResponse.successResponse(res, user);
 } catch (e) {
     console.log(e);
@@ -80,4 +81,6 @@ const updateUser = async(req, res) => {
 }
 
 
-module.exports = {obtainUser, create, findUser, updateUser};
+
+
+module.exports = {obtainUser, createUser, findUser, updateUser};

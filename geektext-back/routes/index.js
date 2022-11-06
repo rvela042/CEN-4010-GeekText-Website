@@ -23,23 +23,23 @@ router.get('/books', book.read);
 router.post('/books', book.create);
 
 //Routes for shopping cart
-router.get('/shoppingCarts', shoppingCart.getCarts);
+/*router.get('/shoppingCarts', shoppingCart.getCarts);
 router.post('/shoppingCarts', shoppingCart.createCart);
 router.get('/deleteAllCarts', shoppingCart.deleteAllCarts);
 router.post('/listBooksInCart', shoppingCart.listBooksInCart);
 router.post('/addToCart', shoppingCart.addBookToCart);
-router.post('/removeFromCart', shoppingCart.removeBookFromCart);
+router.post('/removeFromCart', shoppingCart.removeBookFromCart);*/
 
 
 //need a route to get users
 router.get('/users', user.obtainUser);
 router.get('/users/:username', user.findUser);
-router.post('/users', user.create);
+router.post('/users', user.createUser);
 router.patch('/users/:username', user.updateUser);
 
 //need a route to get all credit card info
-router.get('/cards', card.obtainCard);
-router.post('/cards', card.create);
+router.get('/users/:username/cards', card.obtainCard);
+router.post('/users/:username/cards', card.addCard);
 
 //need a route to get shipping address info
 
