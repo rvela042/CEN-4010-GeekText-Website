@@ -134,7 +134,7 @@ const moveToCart = async (req, res) => {
         const newBookList = wishlist.bookList.filter(storedBookId => storedBookId != bookId);
         //Update new book list in db
         await Wishlist.updateOne({ wishlistName, userId }, { bookList: newBookList });
-        //Move book to shopping cart <-- Waiting for code from Dayalis
+        //Move book to shopping cart
         const shoppingCart = await ShoppingCart.findOne({ userId });
         // Add bookId to cartContent
         if (shoppingCart.cartContent != undefined) {
