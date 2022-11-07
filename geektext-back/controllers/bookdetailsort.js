@@ -1,5 +1,4 @@
 const Book = require('../db/models/book');
-//const Author = require('../db/models/author');
 const httpResponse = require('../utility/backendShell');
 
 const bookByISBN = async (req, res) => {
