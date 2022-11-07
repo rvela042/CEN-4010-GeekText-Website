@@ -134,15 +134,21 @@ const moveToCart = async (req, res) => {
         const newBookList = wishlist.bookList.filter(storedBookId => storedBookId != bookId);
         //Update new book list in db
         await Wishlist.updateOne({ wishlistName, userId }, { bookList: newBookList });
-        //Move book to shopping cart
+        
+        //Try to move book to shopping cart
         const shoppingCart = await ShoppingCart.findOne({ userId });
+        //Check if the shopping cart been created for that user
+        //Create one for the user if shopping cart was not created
+        if (shoppingCart == undefined) {
+            shoppingCart = await ShoppingCart.create({ userId });
+        }
         // Add bookId to cartContent
         if (shoppingCart.cartContent != undefined) {
             shoppingCart.cartContent.push(bookId)
         } else {
             shoppingCart.cartContent = [bookId];
         }
-      await ShoppingCart.updateOne({ userId }, { cartContent: shoppingCart.cartContent });
+        await ShoppingCart.updateOne({ userId }, { cartContent: shoppingCart.cartContent });
 
         httpResponse.successResponse(res, 'success');
 
