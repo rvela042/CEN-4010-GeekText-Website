@@ -7,6 +7,7 @@ module.exports = router
 //requirements to reach each schema in the DB
 const book = require('../controllers/book');
 const test = require('../controllers/test');
+const comments = require('../controllers/bookComments');
 
 //test URL to see if we can GET data
 router.get('/', (req, res) => res.send('Hi, group 12!'));
@@ -30,5 +31,5 @@ router.post('/books', book.create);
 //need a route to get wishlist item info 
 
 //need a route to get comments 
-router.get('/bookComments', bookComments.read);
-router.post('/bookComments', bookComments.create);
+router.get('/bookComments', comments.read);
+router.post('/bookComments', comments.create);

@@ -1,4 +1,5 @@
 const Comment = require('../models/bookComment');
+const create = require('../controllers/book');
 const httpResponse = require('../utility/backendShell');
 
 
@@ -35,12 +36,15 @@ const create = async (req, res) => {
 const read = async (req, res) => {
 
     try{
-        const userComment = await Comment.find({});
+        const userComment = await Comment.find({CreateComment, Rating});
 
         httpResponse.successResponse(res, userComment);
     } catch (e) {
         console.log(e);
-        httpResponse.failureResponse.apply(res, e.toString());
+        httpResponse.failureResponse(res, e.toString());
     }
 
 }
+
+// Create comment list of books
+ // listOfComments =  [create];

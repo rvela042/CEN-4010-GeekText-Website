@@ -19,13 +19,13 @@ const bookCommentSchema = new mongoose.Schema({
 
 const listOfRatingSchema = new mongoose.Schema({
    
-    sortByHighest: [bookCommentSchema]
+    highestRating: [bookCommentSchema]
 
 })
 
 const averageRatingSchema = new mongoose.Schema ({
-    
-    sortByAverage: [bookCommentSchema]
+
+    averageRating: [bookCommentSchema]
 
 })
 
