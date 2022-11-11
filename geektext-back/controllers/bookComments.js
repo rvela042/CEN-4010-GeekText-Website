@@ -45,5 +45,7 @@ const read = async (req, res) => {
 
 }
 
+module.exports = {read, create};
+
 // Create comment list of books
  // listOfComments =  [create];
