@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 
 module.exports = router
-//here we reach 9:34 -- how we discuss with the API
 
 //requirements to reach each schema in the DB
 const book = require('../controllers/book');
@@ -17,9 +16,10 @@ router.get('/', (req, res) => res.send('Hi, group 12!'));
 router.get('/tests', test.obtainTest);
 router.post('/tests', test.create);
 
-//need a route to get books
-router.get('/books', book.read);
-router.post('/books', book.create);
+//Router to get, post, and delete books
+router.post('/book', book.create);
+router.get('/book', book.read);
+router.delete('/book', book.deleteBooks);
 
 //Routes for shopping cart
 router.get('/shoppingCarts', shoppingCart.getCarts);
@@ -58,3 +58,5 @@ router.post('/removewishlistbook', wishlist.removeBook);
 router.post('/movetocart', wishlist.moveToCart);
 
 //need a route to get comments 
+router.get('/bookComments', bookComments.read);
+router.post('/bookComments', bookComments.create);
