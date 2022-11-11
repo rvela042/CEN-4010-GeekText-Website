@@ -1,5 +1,4 @@
-const Comment = require('../models/bookComment');
-const create = require('../controllers/book');
+const Comment = require('../db/models/bookComment');
 const httpResponse = require('../utility/backendShell');
 
 

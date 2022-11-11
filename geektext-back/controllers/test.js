@@ -1,4 +1,4 @@
-const Test = require('../models/test');
+const Test = require('../db/models/test');
 const httpResponse = require('../utility/backendShell');
 
 //obtain data
