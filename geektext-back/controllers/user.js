@@ -5,7 +5,7 @@ const httpResponse = require('../utility/backendShell');
 
 const obtainUser = async (req, res) => {
     try{
-      const users = await User.find({});
+      const users = await User.find({},{creditCard: 0});
   
       httpResponse.successResponse(res, users);
     } catch (e) {
@@ -47,8 +47,12 @@ const obtainUser = async (req, res) => {
 const findUser = async(req, res) => {
   try{
 
-        const user = await User.find({"username": req.params.username});
-    httpResponse.successResponse(res, user);
+        const user = await User.find({"username": req.params.username},{creditCard: 0});
+        if (user.length != 0){
+           httpResponse.successResponse(res, user);
+        }else {
+          httpResponse.failureResponse(res, "That user does not exist");
+        }
 } catch (e) {
     console.log(e);
     httpResponse.failureResponse(res, e.toString());
