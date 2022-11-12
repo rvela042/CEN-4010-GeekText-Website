@@ -6,10 +6,9 @@ const httpResponse = require('../utility/backendShell');
 
 const obtainCard = async (req, res) => {
     try{
-      const user = await User.find({"username": req.params.username});
-      const cards = await Card.find({user});
+      const user = await User.find({"username": req.params.username},{username: 1, creditCard: 1});
 
-      httpResponse.successResponse(res, cards);
+      httpResponse.successResponse(res, user)
     } catch (e) {
       console.log(e)
       httpResponse.failureResponse(res, e.toString());
