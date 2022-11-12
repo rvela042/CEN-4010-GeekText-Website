@@ -33,3 +33,5 @@ router.post('/books', book.create);
 //need a route to get comments 
 router.get('/bookcomments', comments.create);
 router.post('/bookComments', comments.create);
+router.get('/bookComments/:highest', comments.highestRating);
+router.get('/bookComments/:average', comments.averageRating);
