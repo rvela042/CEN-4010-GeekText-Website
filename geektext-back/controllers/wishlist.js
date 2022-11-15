@@ -1,22 +1,34 @@
 const Wishlist = require('../db/models/wishlist');
 const ShoppingCart = require('../db/models/shoppingCart');
+const User = require('../db/models/user');
+const Book = require('../db/models/book');
 const httpResponse = require('../utility/backendShell');
+var ObjectId = require('mongodb').ObjectId;
 
-//method to create a wishlist belongs to a user
+//method to create a wishlist that belongs to a user
 
 const create = async (req, res) => {
     try {
-        const { wishlistName, userId } = req.body;
-        const fields = {
-            userId,
-            wishlistName,
-            bookList: []
+        const { userId, wishlistName } = req.body;
+        //Verify the userID
+        const user = await User.findOne({ _id: ObjectId(userId) });
+        //If userId is valid, create wishlist
+        if (user != undefined) {
+            const fields = {
+                userId,
+                wishlistName,
+                bookList: []
+            }
+
+            Wishlist.collection.createIndex({ userId: 1, wishlistName: 1 }, { unique: true });
+            const wishlist = await Wishlist.create(fields);
+
+            httpResponse.successResponse(res, 'success');
         }
-
-        Wishlist.collection.createIndex({ userId: 1, wishlistName: 1 }, { unique: true });
-        const wishlist = await Wishlist.create(fields);
-
-        httpResponse.successResponse(res, 'success');
+        //userID not valid
+        else {
+            httpResponse.failureResponse(res, 'User not valid');
+        }
     } catch (e) {
         console.log(e);
         httpResponse.failureResponse(res, e.toString());
@@ -63,15 +75,22 @@ const addBook = async (req, res) => {
         const { bookId, wishlistName, userId } = req.body;
         // Find wishlist by name
         const wishlist = await Wishlist.findOne({ wishlistName, userId });
-        // Add book Id to book list
-        if (wishlist.bookList != undefined) {
-            wishlist.bookList.push(bookId)
-        } else {
-            wishlist.bookList = [bookId];
+        //Verify bookId
+        const book = await Book.findOne({ _id: ObjectId(bookId) });
+        //Add book to wishlist
+        if (wishlist != undefined && book != undefined) {
+            if (wishlist.bookList != undefined) {
+                wishlist.bookList.push(bookId)
+            } else {
+                wishlist.bookList = [bookId];
+            }
+            // Update wishlist in db
+            await Wishlist.updateOne({ wishlistName, userId }, { bookList: wishlist.bookList });
+            httpResponse.successResponse(res, 'success');
         }
-        // Update wishlist in db
-        await Wishlist.updateOne({ wishlistName, userId }, { bookList: wishlist.bookList });
-        httpResponse.successResponse(res, 'success');
+        else {
+            httpResponse.failureResponse(res, 'Wishlist or Book not valid');
+        }
     } catch (e) {
         console.log(e);
         httpResponse.failureResponse(res, e.toString());
@@ -134,15 +153,16 @@ const moveToCart = async (req, res) => {
         const newBookList = wishlist.bookList.filter(storedBookId => storedBookId != bookId);
         //Update new book list in db
         await Wishlist.updateOne({ wishlistName, userId }, { bookList: newBookList });
-        
-        //Try to move book to shopping cart
-        const shoppingCart = await ShoppingCart.findOne({ userId });
-        //Check if the shopping cart been created for that user
+
+        //Move book to shopping cart
+        const shoppingCart = await ShoppingCart.findOne({ userId: userId });
+        /* Check if the shopping cart been created for that user
         //Create one for the user if shopping cart was not created
+        */
         if (shoppingCart == undefined) {
             shoppingCart = await ShoppingCart.create({ userId });
         }
-        // Add bookId to cartContent
+        // Add book to cart
         if (shoppingCart.cartContent != undefined) {
             shoppingCart.cartContent.push(bookId)
         } else {
