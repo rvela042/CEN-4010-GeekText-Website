@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 
 module.exports = router
-//here we reach 9:34 -- how we discuss with the API
 
 //requirements to reach each schema in the DB
 const book = require('../controllers/book');
@@ -10,6 +9,9 @@ const test = require('../controllers/test');
 const wishlist = require('../controllers/wishlist');
 const user = require('../controllers/user');
 const card = require('../controllers/card');
+const shoppingCart = require('../controllers/shoppingCart');
+const bookComments = require('../controllers/bookComments');
+
 
 //test URL to see if we can GET data
 router.get('/', (req, res) => res.send('Hi, group 12!'));
@@ -18,17 +20,18 @@ router.get('/', (req, res) => res.send('Hi, group 12!'));
 router.get('/tests', test.obtainTest);
 router.post('/tests', test.create);
 
-//need a route to get books
-router.get('/books', book.read);
-router.post('/books', book.create);
+//Router to get, post, and delete books
+router.post('/book', book.create);
+router.get('/book', book.read);
+router.delete('/book', book.deleteBooks);
 
 //Routes for shopping cart
-/*router.get('/shoppingCarts', shoppingCart.getCarts);
+router.get('/shoppingCarts', shoppingCart.getCarts);
 router.post('/shoppingCarts', shoppingCart.createCart);
 router.get('/deleteAllCarts', shoppingCart.deleteAllCarts);
 router.post('/listBooksInCart', shoppingCart.listBooksInCart);
 router.post('/addToCart', shoppingCart.addBookToCart);
-router.post('/removeFromCart', shoppingCart.removeBookFromCart);*/
+router.post('/removeFromCart', shoppingCart.removeBookFromCart);
 
 
 //need a route to get users
@@ -65,3 +68,5 @@ router.post('/removewishlistbook', wishlist.removeBook);
 router.post('/movetocart', wishlist.moveToCart);
 
 //need a route to get comments 
+router.get('/bookComments', bookComments.read);
+router.post('/bookComments', bookComments.create);
