@@ -57,8 +57,6 @@ const deleteBooks = async (req, res) => {
     } else {
       httpResponse.failureResponse(res, "Incorrect Username or Password");
     } 
-    
-
   } catch (e) {
     console.log(e)
     httpResponse.failureResponse(res, e.toString());

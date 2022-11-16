@@ -66,3 +66,7 @@ you will be able to run this on http://localhost:4000/api
 
 from there, you will use postman to play with the local host 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9536830747b32b49943fe7573397bce52549b43d

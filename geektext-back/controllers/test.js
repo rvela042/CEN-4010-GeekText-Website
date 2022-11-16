@@ -14,7 +14,6 @@ const obtainTest = async (req, res) => {
   }
 
   //post data
-
   const create = async (req, res) => {
     try{
 
