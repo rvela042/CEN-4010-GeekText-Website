@@ -10,6 +10,8 @@ const bookDetailSort = require('../controllers/bookdetailsort');
 const book = require('../controllers/book');
 const test = require('../controllers/test');
 const wishlist = require('../controllers/wishlist');
+const user = require('../controllers/user');
+const card = require('../controllers/card');
 const shoppingCart = require('../controllers/shoppingCart');
 const bookComments = require('../controllers/bookComments');
 
@@ -50,8 +52,14 @@ router.post('/removeFromCart', shoppingCart.removeBookFromCart);
 
 
 //need a route to get users
+router.get('/users', user.obtainUser);
+router.get('/users/:username', user.findUser);
+router.post('/users', user.createUser);
+router.patch('/users/:username', user.updateUser);
 
 //need a route to get all credit card info
+router.get('/users/:username/cards', card.obtainCard);
+router.post('/users/:username/cards', card.addCard);
 
 //need a route to get shipping address info
 
