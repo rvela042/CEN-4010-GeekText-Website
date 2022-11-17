@@ -10,7 +10,10 @@ const bookDetailSort = require('../controllers/bookdetailsort');
 const book = require('../controllers/book');
 const test = require('../controllers/test');
 const wishlist = require('../controllers/wishlist');
+const user = require('../controllers/user');
+const card = require('../controllers/card');
 const shoppingCart = require('../controllers/shoppingCart');
+const bookComments = require('../controllers/bookComments');
 
 //test URL to see if we can GET data
 router.get('/', (req, res) => res.send('Hi, group 12!'));
@@ -69,3 +72,4 @@ router.post('/movetocart', wishlist.moveToCart);
 //need a route to get comments 
 router.get('/bookComments', bookComments.read);
 router.post('/bookComments', bookComments.create);
+
