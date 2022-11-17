@@ -4,6 +4,9 @@ const router = express.Router()
 module.exports = router
 
 //requirements to reach each schema in the DB
+const admin = require('../controllers/admin');
+const author = require('../controllers/author');
+const bookDetailSort = require('../controllers/bookdetailsort');
 const book = require('../controllers/book');
 const test = require('../controllers/test');
 const wishlist = require('../controllers/wishlist');
@@ -31,8 +34,14 @@ router.post('/removeFromCart', shoppingCart.removeBookFromCart);
 
 
 //need a route to get users
+router.get('/users', user.obtainUser);
+router.get('/users/:username', user.findUser);
+router.post('/users', user.createUser);
+router.patch('/users/:username', user.updateUser);
 
 //need a route to get all credit card info
+router.get('/users/:username/cards', card.obtainCard);
+router.post('/users/:username/cards', card.addCard);
 
 //need a route to get shipping address info
 

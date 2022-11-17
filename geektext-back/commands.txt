@@ -65,5 +65,3 @@ MAC USERS: type ---->      sudo npm run devStart
 you will be able to run this on http://localhost:4000/api 
 
 from there, you will use postman to play with the local host 
-
-
