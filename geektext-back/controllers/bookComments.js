@@ -13,7 +13,9 @@ const create = async (req, res) => {
             userId, bookId, comment, rating
         }
 
+        //Defining unique document for the pair of userId and bookId
         Comments.collection.createIndex({ userId: 1, bookId: 1 }, { unique: true });
+        // Creating new comment
         const userComment = await Comments.create(fields);
 
         console.log('Sending...')
@@ -26,11 +28,10 @@ const create = async (req, res) => {
     }
 }
 
-// Get data
-
+// Get all comment
 const read = async (req, res) => {
-
     try {
+        // List all the comments
         const allComments = await Comments.find({});
 
         httpResponse.successResponse(res, allComments);
@@ -38,7 +39,6 @@ const read = async (req, res) => {
         console.log(e);
         httpResponse.failureResponse(res, e.toString());
     }
-
 }
 
 // Delete all comments
