@@ -2,10 +2,10 @@ const Test = require('../db/models/test');
 const httpResponse = require('../utility/backendShell');
 
 //obtain data
+
 const obtainTest = async (req, res) => {
     try{
-      const tests = await Test.find({});
-  
+      const tests = await (Test.find({}).sort({firstName: 1}));
       httpResponse.successResponse(res, tests);
     } catch (e) {
       console.log(e)

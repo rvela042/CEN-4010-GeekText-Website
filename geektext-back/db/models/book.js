@@ -34,7 +34,7 @@ const bookSchema = new mongoose.Schema({
         required: true
     },
     soldcopies: {
-        type: String,
+        type: Number,
         required: true
     }
 })

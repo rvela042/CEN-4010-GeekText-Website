@@ -7,8 +7,8 @@ const httpResponse = require('../utility/backendShell');
 // Post data
 const create = async (req, res) => {
 
-    try{
-        const {title, Comments, User, CreateComment, Rating, Datestamp} = req.body;
+    try {
+        const { title, Comments, User, CreateComment, Rating, Datestamp } = req.body;
         const fields = {
             title,
             Comments,
@@ -33,10 +33,11 @@ const create = async (req, res) => {
 }
 
 // Get data
+
 const read = async (req, res) => {
 
-    try{
-        const userComment = await Comment.find({CreateComment, Rating, Datestamp});
+    try {
+        const userComment = await Comment.find({});
 
         httpResponse.successResponse(res, userComment);
     } catch (e) {
@@ -50,7 +51,7 @@ const read = async (req, res) => {
 const highestRating = async (req, res) => {
 
     try {
-        const listByHighest = await [Comment.find({CreateComment, Rating, Datestamp})];
+        const listByHighest = await [Comment.find({ CreateComment, Rating, Datestamp })];
         listByHighest.reverse(Rating);
 
         httpResponse.successResponse(res, listByHighest);
@@ -66,9 +67,9 @@ const averageRating = async (req, res) => {
 
     try {
 
-        const averageRating = await [Comment.find({title, Rating})];
+        const averageRating = await [Comment.find({ title, Rating })];
         const computeAverage = averageRating(Rating).reduce((a, b) => a + b, 0) / averageRating.length;
-        
+
         httpResponse.successResponse(res, computeAverage);
     } catch (e) {
         console.log(e);
@@ -78,4 +79,4 @@ const averageRating = async (req, res) => {
 }
 
 
-module.exports = {create, read, highestRating, averageRating};
+module.exports = { create, read, highestRating, averageRating };
