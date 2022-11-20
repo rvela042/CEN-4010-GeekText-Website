@@ -85,7 +85,9 @@ router.post('/removewishlistbook', wishlist.removeBook);
 router.post('/movetocart', wishlist.moveToCart);
 
 //need a route to get comments 
-router.get('/bookcomments', comments.create);
+router.get('/bookcomments', comments.read);
 router.post('/bookComments', comments.create);
+router.delete('/bookComments', comments.deleteAll);
+
 router.get('/bookComments/:highest', comments.highestRating);
 router.get('/bookComments/:average', comments.averageRating);

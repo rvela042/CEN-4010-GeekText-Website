@@ -1,4 +1,4 @@
-const Comment = require('../db/models/bookComment');
+const Comments = require('../db/models/bookComment');
 // const Highest = require('../db/models/bookComment');
 // const Average = require('../db/models/bookComment');
 const httpResponse = require('../utility/backendShell');
@@ -8,17 +8,13 @@ const httpResponse = require('../utility/backendShell');
 const create = async (req, res) => {
 
     try {
-        const { title, Comments, User, CreateComment, Rating, Datestamp } = req.body;
+        const { userId, bookId, comment, rating } = req.body;
         const fields = {
-            title,
-            Comments,
-            User,
-            CreateComment,
-            Rating,
-            Datestamp
+            userId, bookId, comment, rating
         }
 
-        const userComment = await Comment.create(fields);
+        Comments.collection.createIndex({ userId: 1, bookId: 1 }, { unique: true });
+        const userComment = await Comments.create(fields);
 
         console.log('Sending...')
         console.log(userComment)
@@ -27,9 +23,7 @@ const create = async (req, res) => {
     } catch (e) {
         console.log(e);
         httpResponse.failureResponse(res, e.toString());
-
     }
-
 }
 
 // Get data
@@ -37,14 +31,27 @@ const create = async (req, res) => {
 const read = async (req, res) => {
 
     try {
-        const userComment = await Comment.find({});
+        const allComments = await Comments.find({});
 
-        httpResponse.successResponse(res, userComment);
+        httpResponse.successResponse(res, allComments);
     } catch (e) {
         console.log(e);
         httpResponse.failureResponse(res, e.toString());
     }
 
+}
+
+// Delete all comments
+const deleteAll = async (req, res) => {
+    try {
+
+        const comments = await Comments.collection.drop();
+
+        httpResponse.successResponse(res, 'success');
+    } catch (e) {
+        console.log(e);
+        httpResponse.failureResponse(res, e.toString());
+    }
 }
 
 // Get list of ratings and comments by highest rating
@@ -79,4 +86,4 @@ const averageRating = async (req, res) => {
 }
 
 
-module.exports = { create, read, highestRating, averageRating };
+module.exports = { create, read, deleteAll, highestRating, averageRating };

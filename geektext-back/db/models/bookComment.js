@@ -1,43 +1,22 @@
 const mongoose = require("mongoose");
 
 // Creating schema
-const commentSchema = new mongoose.Schema({
-   
-    User: String,
-    Comment: String,
-    Rating: String,
-    Datestamp: String
+const commentSchema = new mongoose.Schema(
+    {
 
-});
+        userId: { type: String, required: true },
+        bookId: { type: String, required: true },
+        comment: { type: String, required: false },
+        rating: { type: Number, required: false },
+    },
+    { timestamps: true }
+);
 
-const bookCommentSchema = new mongoose.Schema({
-
-    Title: String,
-    Comments: [commentSchema]
-
-})
-
-/*const listOfRatingSchema = new mongoose.Schema({
-   
-    highestRating: [bookCommentSchema]
-
-})
-
-const averageRatingSchema = new mongoose.Schema ({
-
-    averageRating: [bookCommentSchema]
-
-})
-*/
 
 // Creating models
-const Comment = mongoose.model('Comments', bookCommentSchema);
+const comments = mongoose.model('Comments', commentSchema);
 // const Highest = mongoose.model('highest rating', listOfRatingSchema);
 // const Average = mongoose.model('average rating', averageRatingSchema);
 
 // Exporting models
-module.exports = {
-
-    Comment //, Highest, Average
-
-}
+module.exports = comments; 
