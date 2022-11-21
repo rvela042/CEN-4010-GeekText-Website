@@ -15,6 +15,20 @@ const card = require('../controllers/card');
 const shoppingCart = require('../controllers/shoppingCart');
 const bookComments = require('../controllers/bookComments');
 
+//Router to get, post, and delete an author
+router.post('/author', author.create);
+router.get('/author', author.read);
+router.delete('/author', author.deleteAuthor);
+
+//Router to get, post, and delete an admin
+router.post('/admin', admin.create);
+router.get('/admin', admin.read);
+router.delete('/admin', admin.deleteAdmin);
+
+//Router to sort by ISBN and Author
+router.get('/bookSort/ISBN', bookDetailSort.bookByISBN);
+router.get('/bookSort/author', bookDetailSort.bookByAuthor);
+
 //test URL to see if we can GET data
 router.get('/', (req, res) => res.send('Hi, group 12!'));
 
