@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CONN_STRING = `mongodb+srv://Group12:GeekText12@geektext.pioqvi1.mongodb.net/?retryWrites=true&w=majority`
+const CONN_STRING = `mongodb+srv://Group12:GeekText12@geektext.pioqvi1.mongodb.net/?retryWrites=true&w=majority` 
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true
