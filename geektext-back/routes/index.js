@@ -13,7 +13,7 @@ const wishlist = require('../controllers/wishlist');
 const user = require('../controllers/user');
 const card = require('../controllers/card');
 const shoppingCart = require('../controllers/shoppingCart');
-const bookComments = require('../controllers/bookComments');
+const comments = require('../controllers/comment');
 
 //Router to get, post, and delete an author
 router.post('/author', author.create);
@@ -85,6 +85,6 @@ router.post('/removewishlistbook', wishlist.removeBook);
 router.post('/movetocart', wishlist.moveToCart);
 
 //need a route to get comments 
-router.get('/bookComments', bookComments.read);
-router.post('/bookComments', bookComments.create);
+router.post('/createBookComments', comments.createComment);
+router.get('/readBookComments', comments.readComment);
 
