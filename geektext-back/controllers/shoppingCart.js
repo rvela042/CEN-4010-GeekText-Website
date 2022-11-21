@@ -20,11 +20,11 @@ const getCarts = async (req, res) => {
 
 // *** TESTED *** //
 /* Creates new shopping cart instance
-// Postman: POST /shoppingCarts 
-// {
-//        "userId": "user1",
-//        "cartContent": ["Book1", ""]
-//  }
+   Postman: POST /shoppingCarts 
+   {
+        "userId": "janeDoe",
+        "cartContent": ["Dune", "Hamlet", "IT"]
+    }
 */
 const createCart = async (req, res) => {
   try {
@@ -47,9 +47,9 @@ const createCart = async (req, res) => {
 // *** TESTED *** //
 /* Lists all books in shopping cart
 // Postman: GET /listBooksInCart
-// {
-//        "userId": "user1"
-//  }
+  {
+          "userId": "janeDoe"
+    }
 */
 const listBooksInCart = async (req, res) => {
 
@@ -87,10 +87,10 @@ const deleteAllCarts = async (req, res) => {
 // *** TESTED *** //
 /* Adds book to shopping cart
 // Postman: PUT /addToCart
-// {
-//        "bookId": "book1",
-//        "userId": "user1"
-//  }
+   {
+          "bookId": "Genghis Khan and the Making of the Modern World",
+          "userId": "janeDoe"
+    }
 */
 const addBookToCart = async (req, res) => {
   try {
@@ -122,12 +122,13 @@ const addBookToCart = async (req, res) => {
 }
 
 // *** TESTED *** //
-// Removes book from shopping cart
+/* Removes book from shopping cart
 // Postman: POST /removeFromCart
-// {
-//        "userId": "user1",
-//        "bookId": "book1"
-//  }
+  {
+          "userId": "janDoe",
+          "bookId": "Dune"
+    }
+*/
 const removeBookFromCart = async (req, res) => {
   try {
       //Finds shopping cart with userId
@@ -147,4 +148,6 @@ const removeBookFromCart = async (req, res) => {
 }
 
 module.exports = {getCarts, createCart, deleteAllCarts, listBooksInCart, addBookToCart, removeBookFromCart}; 
+
+
 
