@@ -4,7 +4,7 @@ const httpResponse = require('../utility/backendShell');
 
 //obtain data
 
-const obtainCard = async (req, res) => {
+const retrieveCards = async (req, res) => {
     try{
       const user = await User.find({"username": req.params.username},{username: 1, creditCard: 1});
 
@@ -51,4 +51,4 @@ const obtainCard = async (req, res) => {
 
 }
 
-module.exports = {obtainCard, addCard};
+module.exports = {retrieveCards, addCard};
