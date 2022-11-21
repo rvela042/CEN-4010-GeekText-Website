@@ -29,7 +29,6 @@ router.delete('/admin', admin.deleteAdmin);
 router.get('/bookSort/ISBN', bookDetailSort.bookByISBN);
 router.get('/bookSort/author', bookDetailSort.bookByAuthor);
 
-
 //test URL to see if we can GET data
 router.get('/', (req, res) => res.send('Hi, group 12!'));
 
@@ -45,9 +44,9 @@ router.delete('/book', book.deleteBooks);
 //Routes for shopping cart
 router.get('/shoppingCarts', shoppingCart.getCarts);
 router.post('/shoppingCarts', shoppingCart.createCart);
-router.get('/deleteAllCarts', shoppingCart.deleteAllCarts);
-router.post('/listBooksInCart', shoppingCart.listBooksInCart);
-router.post('/addToCart', shoppingCart.addBookToCart);
+router.delete('/deleteAllCarts', shoppingCart.deleteAllCarts);
+router.get('/listBooksInCart', shoppingCart.listBooksInCart);
+router.put('/addToCart', shoppingCart.addBookToCart);
 router.post('/removeFromCart', shoppingCart.removeBookFromCart);
 
 
@@ -55,6 +54,7 @@ router.post('/removeFromCart', shoppingCart.removeBookFromCart);
 router.get('/users', user.obtainUser);
 router.get('/users/:username', user.findUser);
 router.post('/users', user.createUser);
+// TODO: change to router.put('/users/:username', user.updateUser);
 router.patch('/users/:username', user.updateUser);
 
 //need a route to get all credit card info
@@ -87,3 +87,4 @@ router.post('/movetocart', wishlist.moveToCart);
 //need a route to get comments 
 router.get('/bookComments', bookComments.read);
 router.post('/bookComments', bookComments.create);
+
