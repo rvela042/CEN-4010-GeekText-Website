@@ -30,9 +30,9 @@ router.delete('/book', book.deleteBooks);
 //Routes for shopping cart
 router.get('/shoppingCarts', shoppingCart.getCarts);
 router.post('/shoppingCarts', shoppingCart.createCart);
-router.get('/deleteAllCarts', shoppingCart.deleteAllCarts);
-router.post('/listBooksInCart', shoppingCart.listBooksInCart);
-router.post('/addToCart', shoppingCart.addBookToCart);
+router.delete('/deleteAllCarts', shoppingCart.deleteAllCarts);
+router.get('/listBooksInCart', shoppingCart.listBooksInCart);
+router.put('/addToCart', shoppingCart.addBookToCart);
 router.post('/removeFromCart', shoppingCart.removeBookFromCart);
 
 
@@ -40,6 +40,7 @@ router.post('/removeFromCart', shoppingCart.removeBookFromCart);
 router.get('/users', user.obtainUser);
 router.get('/users/:username', user.findUser);
 router.post('/users', user.createUser);
+// TODO: change to router.put('/users/:username', user.updateUser);
 router.patch('/users/:username', user.updateUser);
 
 //need a route to get all credit card info

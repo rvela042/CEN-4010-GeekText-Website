@@ -46,7 +46,7 @@ const createCart = async (req, res) => {
 
 // *** TESTED *** //
 /* Lists all books in shopping cart
-// Postman: POST /listBooksInCart
+// Postman: GET /listBooksInCart
 // {
 //        "userId": "user1"
 //  }
@@ -70,7 +70,7 @@ const listBooksInCart = async (req, res) => {
 
 // *** TESTED *** //
 /* Deletes all shopping carts in database
-// Postman: GET /deleteAllCarts
+// Postman: DELETE /deleteAllCarts
 */
 const deleteAllCarts = async (req, res) => {
   try {
@@ -86,7 +86,7 @@ const deleteAllCarts = async (req, res) => {
 
 // *** TESTED *** //
 /* Adds book to shopping cart
-// Postman: POST /addToCart
+// Postman: PUT /addToCart
 // {
 //        "bookId": "book1",
 //        "userId": "user1"
