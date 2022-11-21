@@ -1,7 +1,9 @@
+const Book = require('../db/models/book');
 const ShoppingCart = require('../db/models/shoppingCart');
 const httpResponse = require('../utility/backendShell');
 
 
+// *** TESTED *** //
 /* Gets all shopping carts
 // Postman: GET /shoppingCarts 
 */
@@ -16,6 +18,7 @@ const getCarts = async (req, res) => {
     }
   }
 
+// *** TESTED *** //
 /* Creates new shopping cart instance
 // Postman: POST /shoppingCarts 
 // {
@@ -41,8 +44,9 @@ const createCart = async (req, res) => {
   }
 }
 
+// *** TESTED *** //
 /* Lists all books in shopping cart
-// Postman: POST /listBooksInCart
+// Postman: GET /listBooksInCart
 // {
 //        "userId": "user1"
 //  }
@@ -63,8 +67,10 @@ const listBooksInCart = async (req, res) => {
   }
 }
 
+
+// *** TESTED *** //
 /* Deletes all shopping carts in database
-// Postman: GET /deleteAllCarts
+// Postman: DELETE /deleteAllCarts
 */
 const deleteAllCarts = async (req, res) => {
   try {
@@ -78,8 +84,9 @@ const deleteAllCarts = async (req, res) => {
   }
 }
 
+// *** TESTED *** //
 /* Adds book to shopping cart
-// Postman: POST /addToCart
+// Postman: PUT /addToCart
 // {
 //        "bookId": "book1",
 //        "userId": "user1"
@@ -88,23 +95,33 @@ const deleteAllCarts = async (req, res) => {
 const addBookToCart = async (req, res) => {
   try {
       const { bookId, userId } = req.body;
+      var inStock = false;
       // Find shopping cart by  useId
       const shoppingCart = await ShoppingCart.findOne({ userId });
-      // Add bookId to cartContent
-      if (shoppingCart.cartContent != undefined) {
-          shoppingCart.cartContent.push(bookId)
+      // Looking if book exists
+      if(await Book.findOne({name: bookId})){ // name once its updated in data base
+        inStock = true;
       } else {
-          shoppingCart.cartContent = [bookId];
+        httpResponse.failureResponse(res, "Book Not In Store");
+      } 
+    if (inStock== true) {
+        // Add bookId to cartContent
+      if (shoppingCart.cartContent != undefined) {
+        shoppingCart.cartContent.push(bookId)
+      } else {
+        shoppingCart.cartContent = [bookId];
       }
-      // Update shopping cart on MongoDB
+        // Update shopping cart on MongoDB
       await ShoppingCart.updateOne({ userId }, { cartContent: shoppingCart.cartContent });
       httpResponse.successResponse(res, 'success');
+      }
   } catch (e) {
       console.log(e);
       httpResponse.failureResponse(res, e.toString());
   }
 }
 
+// *** TESTED *** //
 // Removes book from shopping cart
 // Postman: POST /removeFromCart
 // {
@@ -130,3 +147,4 @@ const removeBookFromCart = async (req, res) => {
 }
 
 module.exports = {getCarts, createCart, deleteAllCarts, listBooksInCart, addBookToCart, removeBookFromCart}; 
+
