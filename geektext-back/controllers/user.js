@@ -52,6 +52,11 @@ const findUser = async(req, res) => {
 }
 
 const updateUser = async(req, res) => {
+
+  if(Object.keys(req.body).length === 0){
+    httpResponse.failureResponse(res, "Error! Payload cannot be empty!");
+  }
+  
   try{
     const { username, password, firstname, lastname, homeaddress} = req.body;
         const fields = {
