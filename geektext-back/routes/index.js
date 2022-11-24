@@ -6,6 +6,7 @@ module.exports = router
 //requirements to reach each schema in the DB
 const admin = require('../controllers/admin');
 const author = require('../controllers/author');
+const bookSorter = require('../controllers/bbs');
 const bookDetailSort = require('../controllers/bookdetailsort');
 const book = require('../controllers/book');
 const test = require('../controllers/test');
@@ -89,3 +90,8 @@ router.get('/readBookComments', comments.readComment);
 router.get('/sortByHighestRating', comments.sortByHighestRating);
 router.get('/displayAverageRating/', comments.displayAverageRating);
 
+//routes for book browsing and sorting
+router.get('/sortGenre', bookSorter.readByGenre);
+router.get('/sortSeller', bookSorter.readBySeller);
+router.get('/sortRating', bookSorter.readByRating);
+router.get('/sortByPosition', bookSorter.readByX);
