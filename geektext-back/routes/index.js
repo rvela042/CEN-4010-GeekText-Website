@@ -86,4 +86,6 @@ router.post('/movetocart', wishlist.moveToCart);
 //need a route to get comments 
 router.post('/createBookComments', comments.createComment);
 router.get('/readBookComments', comments.readComment);
+router.get('/sortByHighestRating', comments.sortByHighestRating);
+router.get('/displayAverageRating/', comments.displayAverageRating);
 
