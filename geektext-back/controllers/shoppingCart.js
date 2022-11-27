@@ -149,5 +149,3 @@ const removeBookFromCart = async (req, res) => {
 
 module.exports = {getCarts, createCart, deleteAllCarts, listBooksInCart, addBookToCart, removeBookFromCart}; 
 
-
-
